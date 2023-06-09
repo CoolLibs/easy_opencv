@@ -1,0 +1,6 @@
+[submodule "tooling"]
+	path = tooling
+	url = https://github.com/CoolLibs/tooling
+[submodule "opencv"]
+	path = opencv
+	url = https://github.com/opencv/opencv.git
