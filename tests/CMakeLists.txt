@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.11)
-project(mylib-tests)
+project(easy_opencv-tests)
 
 # ---Create executable---
 add_executable(${PROJECT_NAME} tests.cpp)
@@ -13,7 +13,7 @@ else()
 endif()
 
 # ---Maybe enable warnings as errors---
-if(WARNINGS_AS_ERRORS_FOR_MYLIB)
+if(WARNINGS_AS_ERRORS_FOR_EASY_OPENCV)
     if(MSVC)
         target_compile_options(${PROJECT_NAME} PRIVATE /WX)
     else()
@@ -22,8 +22,8 @@ if(WARNINGS_AS_ERRORS_FOR_MYLIB)
 endif()
 
 # ---Include our library---
-add_subdirectory(.. ${CMAKE_CURRENT_SOURCE_DIR}/build/mylib)
-target_link_libraries(${PROJECT_NAME} PRIVATE mylib::mylib)
+add_subdirectory(.. ${CMAKE_CURRENT_SOURCE_DIR}/build/easy_opencv)
+target_link_libraries(${PROJECT_NAME} PRIVATE easy_opencv::easy_opencv)
 
 # ---Add doctest---
 include(FetchContent)
