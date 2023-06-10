@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-include("${CMAKE_SOURCE_DIR}/Cool/CMakeUtils/files_and_folders.cmake") #TODO ajouter CMakeUtils en submodules et mettre le chemin vers cette instal
+include("CMakeUtils/files_and_folders.cmake")
 
 function(target_link_opencv TARGET VISIBILITY)
     set(RELEASE_OR_DEBUG "$<$<CONFIG:Debug>:d>")
@@ -23,8 +23,8 @@ function(target_link_opencv TARGET VISIBILITY)
             "opencv_videoio_msmf470_64${RELEASE_OR_DEBUG}.dll"
         )
         Cool__target_copy_file(${TARGET}
-            "${OPENCV_BUILD_FOLDER}/bin/opencv_videoio_ffmpeg470_64${RELEASE_OR_DEBUG}.dll"
-            "opencv_videoio_ffmpeg470_64${RELEASE_OR_DEBUG}.dll"
+            "${OPENCV_BUILD_FOLDER}/bin/opencv_videoio_ffmpeg470_64.dll"
+            "opencv_videoio_ffmpeg470_64.dll"
         )
 
     elseif(UNIX)
