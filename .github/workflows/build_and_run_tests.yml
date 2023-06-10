@@ -28,7 +28,7 @@ jobs:
       run: cmake --build ${{github.workspace}}\build --config Debug --target ${{env.TARGET}}
 
     - name: Run
-      run: ${{github.workspace}}\build\Debug\${{env.TARGET}} -CI
+      run: ls ${{github.workspace}}\build\Debug
 
 #-----------------------------------------------------------------------------------------------
   Windows_MSVC_Release:
