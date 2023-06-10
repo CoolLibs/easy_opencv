@@ -11,7 +11,7 @@ function(target_link_opencv TARGET VISIBILITY)
         set(OPENCV_BUILD_FOLDER "${OPENCV_FOLDER}/vc16")
 
         target_link_libraries(${TARGET} ${VISIBILITY} "${OPENCV_BUILD_FOLDER}/lib/opencv_world470${RELEASE_OR_DEBUG}.lib")
-        target_include_directories(${TARGET} ${VISIBILITY} "${OPENCV_FOLDER}/include")
+        target_include_directories(${TARGET} SYSTEM ${VISIBILITY} "${OPENCV_FOLDER}/include")
         
         # Copy all the .dll because they must be next to the executable.
         Cool__target_copy_file(${TARGET}

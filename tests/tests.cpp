@@ -1,18 +1,20 @@
-#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
-#include <doctest/doctest.h>
-#include <easy_opencv/easy_opencv.hpp>
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/opencv.hpp>
 
-// Check out doctest's documentation: https://github.com/doctest/doctest/blob/master/doc/markdown/tutorial.md
-
-int factorial(int number)
+auto main() -> int
 {
-    return number <= 1 ? number : factorial(number - 1) * number;
-}
+    cv::VideoCapture cap{0};
+    if (!cap.isOpened())
+    {
+        std::cout << "Cannot access webcam.\n";
+        return 0;
+    }
 
-TEST_CASE("testing the factorial function")
-{
-    CHECK(factorial(1) == 1);
-    CHECK(factorial(2) == 2);
-    CHECK(factorial(3) == 6);
-    CHECK(factorial(10) == 3628800);
+    cv::Mat image;
+    while (true)
+    {
+        cap >> image;
+        cv::imshow("Hello OpenCV", image);
+        cv::waitKey(25);
+    }
 }

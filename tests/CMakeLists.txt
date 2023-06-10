@@ -1,29 +1,13 @@
-cmake_minimum_required(VERSION 3.11)
+cmake_minimum_required(VERSION 3.20)
 project(easy_opencv-tests)
 
 # ---Create executable---
 add_executable(${PROJECT_NAME} tests.cpp)
-target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
-
-# ---Set warning level---
-if(MSVC)
-    target_compile_options(${PROJECT_NAME} PRIVATE /W4)
-else()
-    target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic -pedantic-errors -Wconversion -Wsign-conversion)
-endif()
-
-# ---Maybe enable warnings as errors---
-if(WARNINGS_AS_ERRORS_FOR_EASY_OPENCV)
-    if(MSVC)
-        target_compile_options(${PROJECT_NAME} PRIVATE /WX)
-    else()
-        target_compile_options(${PROJECT_NAME} PRIVATE -Werror)
-    endif()
-endif()
+target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_11)
 
 # ---Include our library---
 add_subdirectory(.. ${CMAKE_CURRENT_SOURCE_DIR}/build/easy_opencv)
-link_opencv(${PROJECT_NAME} PRIVATE)
+target_link_opencv(${PROJECT_NAME} PRIVATE)
 
 # ---Ignore .vscode/settings.json in Git---
 find_package(Git QUIET)

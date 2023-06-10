@@ -20,13 +20,11 @@ target_link_opencv(${PROJECT_NAME} visibility)
 
 You will then have access to OpenCV and be able to use this test program for example:
 ```cpp
-#include <opencv2/opencv.hpp>
 #include <opencv2/highgui/highgui.hpp>
+#include <opencv2/opencv.hpp>
 
 auto main() -> int
 {
-    cv::namedWindow{"Hello OpenCV"};
-
     cv::VideoCapture cap{0};
     if (!cap.isOpened())
     {
