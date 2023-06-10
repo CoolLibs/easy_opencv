@@ -23,17 +23,7 @@ endif()
 
 # ---Include our library---
 add_subdirectory(.. ${CMAKE_CURRENT_SOURCE_DIR}/build/easy_opencv)
-target_link_libraries(${PROJECT_NAME} PRIVATE easy_opencv::easy_opencv)
-
-# ---Add doctest---
-include(FetchContent)
-FetchContent_Declare(
-    doctest
-    GIT_REPOSITORY https://github.com/doctest/doctest
-    GIT_TAG b7c21ec5ceeadb4951b00396fc1e4642dd347e5f
-)
-FetchContent_MakeAvailable(doctest)
-target_link_libraries(${PROJECT_NAME} PRIVATE doctest::doctest)
+link_opencv(${PROJECT_NAME} PRIVATE)
 
 # ---Ignore .vscode/settings.json in Git---
 find_package(Git QUIET)
