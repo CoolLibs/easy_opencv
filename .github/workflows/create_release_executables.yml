@@ -24,7 +24,7 @@ jobs:
 
 
     - name: Display
-      run: ls ${{github.workspace}}\build\
+      run: ls ${{github.workspace}}\build\Release
 
     - name: Zip files
       uses: vimtor/action-zip@v1
