@@ -3,7 +3,7 @@ name: Create release executables
 on: workflow_dispatch
 
 env:
-  TARGET: test
+  TARGET: easy_opencv-tests
 
 
 jobs:
