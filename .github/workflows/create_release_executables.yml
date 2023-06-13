@@ -24,12 +24,12 @@ jobs:
 
 
     - name: Display
-      run: ls ${{github.workspace}}\build\Release
+      run: ls build\Release
 
     - name: Zip files
       uses: vimtor/action-zip@v1
       with:
-        files: ${{github.workspace}}\build\Release
+        files: build\Release
         dest: easy_opencv_test.zip
 
     - name: Release
