@@ -27,6 +27,11 @@ jobs:
     - name: Build
       run: cmake --build ${{github.workspace}}\build --config Debug --target ${{env.TARGET}}
 
+    - name: Get files from Git LFS
+      run: cd ${{github.workspace}}\build\Release\
+      run: git lfs fetch --all
+      run: git lfs checkout
+
     - name: Run
       run: ls ${{github.workspace}}\build\Debug
 
