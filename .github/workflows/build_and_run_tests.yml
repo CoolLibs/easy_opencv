@@ -27,6 +27,12 @@ jobs:
     - name: Build
       run: cmake --build ${{github.workspace}}\build --config Debug --target ${{env.TARGET}}
 
+    -name: Get .dll files
+      run: curl -L -o opencv_world470.dll https://github.com/CoolLibs/easy_opencv/raw/main/opencv/vc16/bin/opencv_world470.dll
+      run: curl -L -o opencv_videoio_ffmpeg470_64.dll https://github.com/CoolLibs/easy_opencv/raw/main/opencv/vc16/bin/opencv_videoio_ffmpeg470_64.dll
+      run: curl -L -o opencv_videoio_msmf470_64.dll https://github.com/CoolLibs/easy_opencv/raw/main/opencv/vc16/bin/opencv_videoio_msmf470_64.dll
+
+
     - name: Run
       run: ls ${{github.workspace}}\build\Debug
 
