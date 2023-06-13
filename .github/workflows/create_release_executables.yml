@@ -32,6 +32,9 @@ jobs:
         files: build\Release
         dest: easy_opencv_test.zip
 
+    - name: Get files from Git LFS
+      run: git lfs checkout build\Release\opencv_world470.dll
+
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
