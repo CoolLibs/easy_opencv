@@ -28,13 +28,13 @@ jobs:
       run: cmake --build ${{github.workspace}}\build --config Debug --target ${{env.TARGET}}
 
     - name: Curl opencv_world470
-      run: curl -L -o opencv_world470d.dll https://github.com/CoolLibs/easy_opencv/raw/main/opencv/vc16/bin/opencv_world470d.dll
+      run: curl -L -o ${{github.workspace}}\build\Debug\opencv_world470d.dll https://github.com/CoolLibs/easy_opencv/raw/main/opencv/vc16/bin/opencv_world470d.dll
 
     - name: Curl opencv_videoio_ffmpeg470_64
-      run: curl -L -o opencv_videoio_ffmpeg470_64.dll https://github.com/CoolLibs/easy_opencv/raw/main/opencv/vc16/bin/opencv_videoio_ffmpeg470_64.dll
+      run: curl -L -o ${{github.workspace}}\build\Debug\opencv_videoio_ffmpeg470_64.dll https://github.com/CoolLibs/easy_opencv/raw/main/opencv/vc16/bin/opencv_videoio_ffmpeg470_64.dll
     
     - name: Curl opencv_videoio_msmf470_64
-      run: curl -L -o opencv_videoio_msmf470_64d.dll https://github.com/CoolLibs/easy_opencv/raw/main/opencv/vc16/bin/opencv_videoio_msmf470_64d.dll
+      run: curl -L -o ${{github.workspace}}\build\Debug\opencv_videoio_msmf470_64d.dll https://github.com/CoolLibs/easy_opencv/raw/main/opencv/vc16/bin/opencv_videoio_msmf470_64d.dll
 
     - name: Show folder
       run: ls ${{github.workspace}}\build\Debug
