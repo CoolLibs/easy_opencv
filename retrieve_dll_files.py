@@ -47,8 +47,6 @@ print(is_git_lfs_installed())
 
 
 if(is_git_lfs_installed):
-    retrieve_dll()
-else:
     install_git_lfs()
     retrieve_dll()
 

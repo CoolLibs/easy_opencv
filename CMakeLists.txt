@@ -4,14 +4,16 @@ include("CMakeUtils/files_and_folders.cmake")
 
 function(target_link_opencv TARGET VISIBILITY)
     set(RELEASE_OR_DEBUG "$<$<CONFIG:Debug>:d>")
+    
+    #same include for all plateforms
+    set(OPENCV_FOLDER "${CMAKE_CURRENT_FUNCTION_LIST_DIR}/opencv")
+    target_include_directories(${TARGET} SYSTEM ${VISIBILITY} "${OPENCV_FOLDER}/include")
 
     if(WIN32)
 
-        set(OPENCV_FOLDER "${CMAKE_CURRENT_FUNCTION_LIST_DIR}/opencv")
-        set(OPENCV_BUILD_FOLDER "${OPENCV_FOLDER}/vc16")
+        set(OPENCV_BUILD_FOLDER "${OPENCV_FOLDER}/Windows/vc16")
 
         target_link_libraries(${TARGET} ${VISIBILITY} "${OPENCV_BUILD_FOLDER}/lib/opencv_world470${RELEASE_OR_DEBUG}.lib")
-        target_include_directories(${TARGET} SYSTEM ${VISIBILITY} "${OPENCV_FOLDER}/include")
         
         # Copy all the .dll because they must be next to the executable.
         Cool__target_copy_file(${TARGET}
@@ -27,7 +29,13 @@ function(target_link_opencv TARGET VISIBILITY)
             "opencv_videoio_ffmpeg470_64.dll"
         )
 
-    elseif(UNIX)
+    elseif(UNIX) # for now, just the 4.5.5 version, only in Release
+        set(OPENCV_BUILD_FOLDER "${OPENCV_FOLDER}/Linux")
+        target_link_directories("${OPENCV_FOLDER}")
+        Cool__target_copy_file(${TARGET}
+            "${OPENCV_BUILD_FOLDER}/bin/libopencv_world.so"
+            "libopencv_world.so"
+        )
 
     elseif(APPLE)
 
