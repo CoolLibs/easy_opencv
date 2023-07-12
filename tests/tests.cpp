@@ -10,7 +10,7 @@ auto main(int argc, char* argv[]) -> int
     if (is_CI)
         return 0; // In CI, knowing that the executable can run and doesn't give a "missing dll" error at runtime is enough.
 
-    cv::VideoCapture cap{0};
+    cv::VideoCapture cap{1};
     if (!cap.isOpened())
     {
         std::cout << "Cannot access webcam.\n";
