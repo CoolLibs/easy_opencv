@@ -32,6 +32,7 @@ function(target_link_opencv TARGET VISIBILITY)
     elseif(UNIX) # for now, just the 4.5.5 version, only in Release
 
         find_package(Threads REQUIRED)
+        
         find_package(PkgConfig REQUIRED)
         pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
         include_directories(${GTK3_INCLUDE_DIRS})
@@ -44,7 +45,7 @@ function(target_link_opencv TARGET VISIBILITY)
         message("\n\n\n\n 3rd party folder : ${3RD_PARTY} \n\n\n\n")
         target_link_directories(${TARGET} ${VISIBILITY} "${OPENCV_FOLDER}")
 
-        target_link_libraries(${TARGET} "${OPENCV_BUILD_FOLDER}/libopencv_world.a" "${3RD_PARTY}/lib/libippiw.a" "${3RD_PARTY}/ippicv/ippicv_lnx/icv/lib/intel64/libippicv.a" "${3RD_PARTY}/lib/liblibtiff.a" "${3RD_PARTY}/lib/liblibpng.a" "${3RD_PARTY}/lib/liblibopenjp2.a" "${3RD_PARTY}/lib/liblibwebp.a" "${3RD_PARTY}/lib/liblibjpeg-turbo.a" "${3RD_PARTY}/lib/libzlib.a" ${GTK3_LIBRARIES} Threads::Threads dl) # avcodec avformat avutil dl for ffmpeg ?
+        target_link_libraries(${TARGET} "${OPENCV_BUILD_FOLDER}/libopencv_world.a" ${GTK3_LIBRARIES} Threads::Threads dl) # avcodec avformat avutil dl for ffmpeg ?
         
         Cool__target_copy_file(${TARGET}
             "${OPENCV_BUILD_FOLDER}/libopencv_world.a"
