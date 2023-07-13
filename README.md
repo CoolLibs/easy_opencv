@@ -63,3 +63,7 @@ If you want to update this library to use a more recent version of OpenCV:
 - In the `opencv/cv16` folder, change `bin` and `lib` folders with the updated `build/x64/vc1X/bin` and `build/x64/vc1X/lib` files (you just need the `.dll` files for the `bin` folder and the `.lib` for the `lib` folder).
 
 - In *CMakeLists.txt* change `opencv_world470`, `opencv_videoio_msmf470_64` and `opencv_videoio_ffmpeg470_64` with the names of the new files (you will most likely just need to change the `470` with the new version number).
+
+
+### BUILD FOR LINUX
+you may need to install with the line `sudo apt-get install libgtk-3-dev`

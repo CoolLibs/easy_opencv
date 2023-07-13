@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.clbnode": "glsl",
+        "atomic": "cpp"
+    }
+}
