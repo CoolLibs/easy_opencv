@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.5)
 add_library(easy_opencv INTERFACE)
 
 set(BUILD_opencv_world ON CACHE BOOL "" FORCE)
+set(OPENCV_PYTHON_SKIP_DETECTION ON CACHE BOOL "" FORCE)
 
 add_subdirectory(opencv)
 
