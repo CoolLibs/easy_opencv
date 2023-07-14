@@ -66,7 +66,7 @@ set(WITH_WEBP OFF CACHE BOOL "" FORCE)
 set(WITH_WIN32UI ON CACHE BOOL "" FORCE)
 set(WITH_XIMEA OFF CACHE BOOL "" FORCE)
 
-# set(WITH_GTK ON CACHE BOOL "" FORCE) # TODO(TD) off par défault, sera set pour les tests
+set(WITH_GTK ON CACHE BOOL "" FORCE) # TODO(TD) off par défault, sera set pour les tests
 
 # Set OpenCV module TODO(TD) tester avec BUILD_LIST, set ON et OFF tout seule les bons trucs ?
 set(BUILD_opencv_apps OFF CACHE BOOL "" FORCE)
