@@ -1,7 +1,6 @@
 #include <iostream>
 #include <opencv2/opencv.hpp>
 
-
 auto main(int argc, char* argv[]) -> int
 {
     bool const is_CI = argc >= 2 && strcmp(argv[1], "-CI") == 0; // NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)

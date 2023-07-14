@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.0)
 
 add_library(easy_opencv INTERFACE)
 
-include("opencv_build_options.cmake") # TODO(TD) check si les gens ont pas def leur propre fichier
 set(BUILD_opencv_world ON CACHE BOOL "" FORCE)
 
 add_subdirectory(opencv)
@@ -38,12 +37,7 @@ if(WIN32)
 
 elseif(UNIX) # for now, just the 4.5.5 version, only in Release
     find_package(Threads REQUIRED)
-
-    find_package(PkgConfig REQUIRED)
-    pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
-    target_include_directories(easy_opencv SYSTEM INTERFACE ${GTK3_INCLUDE_DIRS})
-
-    target_link_libraries(easy_opencv INTERFACE opencv_world ${GTK3_LIBRARIES} Threads::Threads dl)
+    target_link_libraries(easy_opencv INTERFACE opencv_world Threads::Threads dl)
 
 elseif(APPLE)
 endif()

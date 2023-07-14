@@ -1,4 +1,4 @@
-# set 3rdParty elements
+# Choose which libraries to link into OpenCV
 set(WITH_1394 OFF CACHE BOOL "" FORCE)
 set(WITH_ADE OFF CACHE BOOL "" FORCE)
 set(WITH_ARITH_DEC OFF CACHE BOOL "" FORCE)
@@ -15,7 +15,13 @@ set(WITH_FREETYPE ON CACHE BOOL "" FORCE)
 set(WITH_GDAL OFF CACHE BOOL "" FORCE)
 set(WITH_GDCM OFF CACHE BOOL "" FORCE)
 set(WITH_GSTREAMER OFF CACHE BOOL "" FORCE)
-set(WITH_GTK OFF CACHE BOOL "" FORCE)
+
+if(LINUX)
+    set(WITH_GTK ON CACHE BOOL "" FORCE)
+else()
+    set(WITH_GTK OFF CACHE BOOL "" FORCE)
+endif()
+
 set(WITH_GTK_2_X OFF CACHE BOOL "" FORCE)
 set(WITH_HALIDE OFF CACHE BOOL "" FORCE)
 set(WITH_HPX OFF CACHE BOOL "" FORCE)
@@ -66,9 +72,7 @@ set(WITH_WEBP OFF CACHE BOOL "" FORCE)
 set(WITH_WIN32UI ON CACHE BOOL "" FORCE)
 set(WITH_XIMEA OFF CACHE BOOL "" FORCE)
 
-set(WITH_GTK ON CACHE BOOL "" FORCE) # TODO(TD) off par défault, sera set pour les tests
-
-# Set OpenCV module TODO(TD) tester avec BUILD_LIST, set ON et OFF tout seule les bons trucs ?
+# Choose which parts of OpenCV to build
 set(BUILD_opencv_apps OFF CACHE BOOL "" FORCE)
 set(BUILD_opencv_calib3d OFF CACHE BOOL "" FORCE)
 set(BUILD_opencv_dnn OFF CACHE BOOL "" FORCE)
@@ -91,13 +95,3 @@ set(BUILD_opencv_stitching OFF CACHE BOOL "" FORCE)
 set(BUILD_opencv_ts OFF CACHE BOOL "" FORCE)
 set(BUILD_opencv_video ON CACHE BOOL "" FORCE)
 set(BUILD_opencv_videoio ON CACHE BOOL "" FORCE)
-
-# set(BUILD_LIST
-# "opencv_highgui"
-# "opencv_imgcodecs"
-# "opencv_imgproc"
-# "opencv_video"
-# "opencv_videoio"
-# )
-
-# TODO(TD) mettre tous BUILD dispo
