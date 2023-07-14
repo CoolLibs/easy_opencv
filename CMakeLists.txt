@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 
 add_library(easy_opencv INTERFACE)
 
@@ -8,7 +8,7 @@ add_subdirectory(opencv)
 
 # same include for all plateforms
 target_include_directories(easy_opencv SYSTEM INTERFACE "opencv/include")
-target_include_directories(easy_opencv SYSTEM INTERFACE "build") # TODO(TD) check cmake variable qui donne tjr le bon dossier
+target_include_directories(easy_opencv SYSTEM INTERFACE "${CMAKE_BINARY_DIR}") # if you cannot include OpenCV, it is possible that ${CMAKE_BINARY_DIR} was not the right folder to use please rase an issue on github.
 target_include_directories(easy_opencv SYSTEM INTERFACE "opencv/modules/calib3d/include")
 target_include_directories(easy_opencv SYSTEM INTERFACE "opencv/modules/core/include")
 target_include_directories(easy_opencv SYSTEM INTERFACE "opencv/modules/dnn/include")
