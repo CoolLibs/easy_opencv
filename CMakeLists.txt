@@ -32,13 +32,4 @@ target_include_directories(easy_opencv SYSTEM INTERFACE "opencv/modules/video/in
 target_include_directories(easy_opencv SYSTEM INTERFACE "opencv/modules/videoio/include")
 target_include_directories(easy_opencv SYSTEM INTERFACE "opencv/modules/world/include")
 
-# build opencv
-if(WIN32)
-    target_link_libraries(easy_opencv INTERFACE opencv_world)
-
-elseif(UNIX) # for now, just the 4.5.5 version, only in Release
-    find_package(Threads REQUIRED)
-    target_link_libraries(easy_opencv INTERFACE opencv_world Threads::Threads dl)
-
-elseif(APPLE)
-endif()
+target_link_libraries(easy_opencv INTERFACE opencv_world)
