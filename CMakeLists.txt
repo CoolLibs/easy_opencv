@@ -6,7 +6,7 @@ add_library(easy_opencv INTERFACE)
     
 include("opencv_build_options.cmake") #TODO(TD) check si les gens ont pas def leur propre fichier
 
-add_subdirectory(opencv build) #TDOD(TD) besoins du build ???
+add_subdirectory(opencv)
 
 
 #same include for all plateforms
