@@ -7,7 +7,8 @@ target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_11)
 
 # ---Include our library---
 add_subdirectory(.. ${CMAKE_CURRENT_SOURCE_DIR}/build/easy_opencv)
-target_link_opencv(${PROJECT_NAME} PRIVATE)
+target_link_libraries(${PROJECT_NAME} PRIVATE easy_opencv)
+# target_link_opencv(${PROJECT_NAME} PRIVATE)
 
 # ---Ignore .vscode/settings.json in Git---
 find_package(Git QUIET)
