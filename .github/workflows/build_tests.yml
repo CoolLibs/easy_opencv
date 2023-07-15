@@ -154,10 +154,10 @@ jobs:
         submodules: recursive
 
     - name: Configure CMake
-      run: cmake ./tests -B ${{github.workspace}}/build -DWARNINGS_AS_ERRORS_FOR_EASY_OPENCV=ON -D CMAKE_BUILD_TYPE=Debug -D CMAKE_C_COMPILER=gcc-11 -D CMAKE_CXX_COMPILER=g++-11 
+      run: cmake ./tests -B ${{github.workspace}}/build -DWARNINGS_AS_ERRORS_FOR_EASY_OPENCV=ON -D CMAKE_BUILD_TYPE=Debug -D CMAKE_C_COMPILER=gcc-11 -D CMAKE_CXX_COMPILER=g++-11
 
     - name: Build
-      run: cmake --build ${{github.workspace}}/build --config Debug --target ${{env.TARGET}} -flax-vector-conversions
+      run: cmake --build ${{github.workspace}}/build --config Debug --target ${{env.TARGET}}
 
 #-----------------------------------------------------------------------------------------------
   MacOS_GCC_Release: 
@@ -169,10 +169,10 @@ jobs:
         submodules: recursive
 
     - name: Configure CMake
-      run: cmake ./tests -B ${{github.workspace}}/build -DWARNINGS_AS_ERRORS_FOR_EASY_OPENCV=ON -D CMAKE_BUILD_TYPE=Release -D CMAKE_C_COMPILER=gcc-11 -D CMAKE_CXX_COMPILER=g++-11 
+      run: cmake ./tests -B ${{github.workspace}}/build -DWARNINGS_AS_ERRORS_FOR_EASY_OPENCV=ON -D CMAKE_BUILD_TYPE=Release -D CMAKE_C_COMPILER=gcc-11 -D CMAKE_CXX_COMPILER=g++-11
 
     - name: Build
-      run: cmake --build ${{github.workspace}}/build --config Release --target ${{env.TARGET}} -flax-vector-conversions
+      run: cmake --build ${{github.workspace}}/build --config Release --target ${{env.TARGET}}
 
 #-----------------------------------------------------------------------------------------------
   MacOS_Clang_Debug:
