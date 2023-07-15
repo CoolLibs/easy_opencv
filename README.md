@@ -41,18 +41,19 @@ auto main() -> int
 }
 ```
 
+## Choose options you want to use
+In the `test` folder you have a file `opencv_build_options.cmake`, this files enables you to specify which modules or 3rdparty libraries will be used in OpenCV.
+
+For your project, you need to copy it, set all the options you need and place it anywhere you want in your project.
+
+In your `CMakeLists.txt` before you arr easy_opencv whith `add_subdirectory()` you need to do `include("[path_of_the_file]/opencv_build_options.cmake")`.
+
 ## For maintainers
 
 ### Running the tests
 
 Simply use "tests/CMakeLists.txt" to generate a project, then run it.<br/>
 If you are using VSCode and the CMake extension, this project already contains a *.vscode/settings.json* that will use the right CMakeLists.txt automatically.
-
-
-### Choose options you want to use
-In the `test` folder you have a file `opencv_build_options.cmake`, this files enables you to specify which modules or 3rdparty libraries will be used in OpenCV.
-For your project, you need to copy it and place it anywhere you want, set the options you want.
-During the include od the library, just before the easy_opencv `add_subdirectory()` you need to do `include("[path_of_the_file]/opencv_build_options.cmake")`.
 
 ### BUILD FOR LINUX
 you may need to install with the line `sudo apt-get install libgtk-3-dev`
