@@ -20,7 +20,6 @@ target_link_opencv(${PROJECT_NAME} visibility)
 
 You will then have access to OpenCV and be able to use this test program for example:
 ```cpp
-#include <opencv2/highgui/highgui.hpp>
 #include <opencv2/opencv.hpp>
 
 auto main() -> int
@@ -49,21 +48,11 @@ auto main() -> int
 Simply use "tests/CMakeLists.txt" to generate a project, then run it.<br/>
 If you are using VSCode and the CMake extension, this project already contains a *.vscode/settings.json* that will use the right CMakeLists.txt automatically.
 
-### Updating OpenCV
 
-If you want to update this library to use a more recent version of OpenCV:
-
-#### For all plateforms
-
-- Download the desired OpenCV version from https://opencv.org/releases/
-- Replace the content of `opencv/include` with whatever is in `build/include` in the OpenCV folder you just downloaded.
-
-#### For Windows
-
-- In the `opencv/cv16` folder, change `bin` and `lib` folders with the updated `build/x64/vc1X/bin` and `build/x64/vc1X/lib` files (you just need the `.dll` files for the `bin` folder and the `.lib` for the `lib` folder).
-
-- In *CMakeLists.txt* change `opencv_world470`, `opencv_videoio_msmf470_64` and `opencv_videoio_ffmpeg470_64` with the names of the new files (you will most likely just need to change the `470` with the new version number).
-
+### Choose options you want to use
+In the `test` folder you have a file `opencv_build_options.cmake`, this files enables you to specify which modules or 3rdparty libraries will be used in OpenCV.
+For your project, you need to copy it and place it anywhere you want, set the options you want.
+During the include od the library, just before the easy_opencv `add_subdirectory()` you need to do `include("[path_of_the_file]/opencv_build_options.cmake")`.
 
 ### BUILD FOR LINUX
 you may need to install with the line `sudo apt-get install libgtk-3-dev`
