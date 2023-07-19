@@ -14,6 +14,6 @@ auto main() -> int
     while (cv::waitKey(1) != 27 /*ESCAPE*/)
     {
         video_capture >> image;
-        cv::imshow("Hello OpenCV", image);
+        cv::imshow("Hello OpenCV - Press ESCAPE to close me", image);
     }
 }
