@@ -87,6 +87,7 @@ endif()
 set(WITH_XIMEA OFF CACHE BOOL "" FORCE)
 
 # Choose which parts of OpenCV to build
+set(BUILD_JAVA OFF CACHE BOOL "" FORCE)
 set(BUILD_opencv_apps OFF CACHE BOOL "" FORCE)
 set(BUILD_opencv_calib3d OFF CACHE BOOL "" FORCE)
 set(BUILD_opencv_dnn OFF CACHE BOOL "" FORCE)
