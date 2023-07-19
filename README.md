@@ -33,17 +33,17 @@ You will then have access to OpenCV and be able to use this test program for exa
 
 auto main() -> int
 {
-    cv::VideoCapture cap{0};
-    if (!cap.isOpened())
+    auto video_capture = cv::VideoCapture{0};
+    if (!video_capture.isOpened())
     {
         std::cout << "Cannot access webcam.\n";
         return -1;
     }
 
-    cv::Mat image;
-    while (cv::waitKey(25) != 27) // 27 => ESCAPE
+    auto image = cv::Mat{};
+    while (cv::waitKey(1) != 27 /*ESCAPE*/)
     {
-        cap >> image;
+        video_capture >> image;
         cv::imshow("Hello OpenCV", image);
     }
 }
