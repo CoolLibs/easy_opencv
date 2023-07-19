@@ -4,13 +4,10 @@ add_library(easy_opencv INTERFACE)
 add_library(easy_opencv::easy_opencv ALIAS easy_opencv)
 
 set(BUILD_opencv_world ON CACHE BOOL "" FORCE)
-set(OPENCV_PYTHON_SKIP_DETECTION ON CACHE BOOL "" FORCE)
-
 add_subdirectory(opencv)
 
-# same include for all plateforms
 target_include_directories(easy_opencv SYSTEM INTERFACE "opencv/include")
-target_include_directories(easy_opencv SYSTEM INTERFACE "${CMAKE_BINARY_DIR}") # if you cannot include OpenCV, it is possible that ${CMAKE_BINARY_DIR} was not the right folder to use please rase an issue on github.
+target_include_directories(easy_opencv SYSTEM INTERFACE "${CMAKE_BINARY_DIR}") # Not sure about this line. In some complex setups the OpenCV header might end up in a different place than this one.
 target_include_directories(easy_opencv SYSTEM INTERFACE "opencv/modules/calib3d/include")
 target_include_directories(easy_opencv SYSTEM INTERFACE "opencv/modules/core/include")
 target_include_directories(easy_opencv SYSTEM INTERFACE "opencv/modules/dnn/include")

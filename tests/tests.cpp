@@ -1,15 +1,8 @@
 #include <iostream>
 #include <opencv2/opencv.hpp>
 
-auto main(int argc, char* argv[]) -> int
+auto main() -> int
 {
-    bool const is_CI = argc >= 2 && strcmp(argv[1], "-CI") == 0; // NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
-
-    // cv::Mat image;
-    // (void)image;
-    if (is_CI)
-        return 0; // In CI, knowing that the executable can run and doesn't give a "missing dll" error at runtime is enough.
-
     cv::VideoCapture cap{0};
     if (!cap.isOpened())
     {

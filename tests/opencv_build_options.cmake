@@ -1,4 +1,6 @@
-# Choose which libraries to link into OpenCV
+set(OPENCV_PYTHON_SKIP_DETECTION ON CACHE BOOL "" FORCE)
+
+# Choose which external libraries to link into OpenCV
 set(WITH_1394 OFF CACHE BOOL "" FORCE)
 set(WITH_ADE OFF CACHE BOOL "" FORCE)
 set(WITH_ARITH_DEC OFF CACHE BOOL "" FORCE)

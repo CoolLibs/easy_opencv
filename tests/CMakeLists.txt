@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.5)
 project(easy_opencv-tests)
 
 # ---Create executable---
@@ -6,19 +6,16 @@ add_executable(${PROJECT_NAME} tests.cpp)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_11)
 
 # ---Include our library---
-include("opencv_build_options.cmake") # TODO(TD) leur dire de mettre leur propre fichier de setup (dans le readme)
-
+include("opencv_build_options.cmake")
 add_subdirectory(.. ${CMAKE_CURRENT_SOURCE_DIR}/build/easy_opencv)
-target_link_libraries(${PROJECT_NAME} PRIVATE easy_opencv)
+target_link_libraries(${PROJECT_NAME} PRIVATE easy_opencv::easy_opencv)
 
-if(LINUX)
+if(LINUX) # Needed for the windowing part
     find_package(PkgConfig REQUIRED)
     pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
     target_include_directories(${PROJECT_NAME} SYSTEM PRIVATE ${GTK3_INCLUDE_DIRS})
     target_link_libraries(${PROJECT_NAME} PRIVATE ${GTK3_LIBRARIES})
 endif()
-
-# target_link_opencv(${PROJECT_NAME} PRIVATE)
 
 # ---Ignore .vscode/settings.json in Git---
 find_package(Git QUIET)
