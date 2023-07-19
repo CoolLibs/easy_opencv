@@ -18,7 +18,7 @@ include(FetchContent)
 FetchContent_Declare(
     easy_opencv
     GIT_REPOSITORY https://github.com/CoolLibs/easy_opencv
-    GIT_TAG 0b7cf0f638c96595436c41d86ea531e29cdfc418
+    GIT_TAG aa8dbf985f5cee8fe7c23308764413814a0d3217
 )
 FetchContent_MakeAvailable(easy_opencv)
 
@@ -61,7 +61,7 @@ include(FetchContent)
 FetchContent_Declare(
     easy_opencv
     GIT_REPOSITORY https://github.com/CoolLibs/easy_opencv
-    GIT_TAG 0b7cf0f638c96595436c41d86ea531e29cdfc418
+    GIT_TAG aa8dbf985f5cee8fe7c23308764413814a0d3217
 )
 FetchContent_MakeAvailable(easy_opencv)
 
