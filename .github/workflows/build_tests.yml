@@ -131,10 +131,12 @@ jobs:
     name: Linux Clang Release
     runs-on: ubuntu-22.04
    
-    env:
-      CACHE_KEY: ${{ runner.os }}-${{ matrix.config.CMAKE_C_COMPILER }}-${{ matrix.config.CMAKE_CXX_COMPILER }}-OpenCV-${{ hashFiles('/opencv/CMakeLists.txt') }}
+      
+    env: 
+      CACHE_KEY: linux-${{ matrix.config.CMAKE_C_COMPILER }}-${{ matrix.config.CMAKE_CXX_COMPILER }}-OpenCV-${{ hashFiles('/opencv/CMakeLists.txt') }}
 
-    steps:
+    steps:  
+    
       
     - uses: actions/checkout@v3
       with:
