@@ -12,132 +12,15 @@ env:
   TARGET: easy_opencv-tests
 
 jobs:
-# #-----------------------------------------------------------------------------------------------
-#   Windows_MSVC_Debug:
-#     name: Windows MSVC Debug
-#     runs-on: windows-2022
-#     steps:
-#     - uses: actions/checkout@v3
-#       with:
-#         submodules: recursive
-
-#     - name: Configure CMake
-#       run: cmake .\tests -B ${{github.workspace}}\build -DWARNINGS_AS_ERRORS_FOR_EASY_OPENCV=ON -D CMAKE_C_COMPILER=cl -D CMAKE_CXX_COMPILER=cl 
-
-#     - name: Build
-#       run: cmake --build ${{github.workspace}}\build --config Debug --target ${{env.TARGET}}
-
-# #-----------------------------------------------------------------------------------------------
-#   Windows_MSVC_Release:
-#     name: Windows MSVC Release
-#     runs-on: windows-2022
-#     steps:
-#     - uses: actions/checkout@v3
-#       with:
-#         submodules: recursive
-
-#     - name: Configure CMake
-#       run: cmake .\tests -B ${{github.workspace}}\build -DWARNINGS_AS_ERRORS_FOR_EASY_OPENCV=ON -D CMAKE_C_COMPILER=cl -D CMAKE_CXX_COMPILER=cl
-
-#     - name: Build
-#       run: cmake --build ${{github.workspace}}\build --config Release --target ${{env.TARGET}}
-
-# #-----------------------------------------------------------------------------------------------
-#   Windows_Clang_Debug:
-#     name: Windows Clang Debug
-#     runs-on: windows-2022
-#     steps:
-#     - uses: actions/checkout@v3
-#       with:
-#         submodules: recursive
-
-#     - name: Configure CMake
-#       run: cmake .\tests -B ${{github.workspace}}\build -DWARNINGS_AS_ERRORS_FOR_EASY_OPENCV=ON -T ClangCL
-
-#     - name: Build
-#       run: cmake --build ${{github.workspace}}\build --config Debug --target ${{env.TARGET}}
-
-# #-----------------------------------------------------------------------------------------------
-#   Windows_Clang_Release:
-#     name: Windows Clang Release
-#     runs-on: windows-2022
-#     steps:
-#     - uses: actions/checkout@v3
-#       with:
-#         submodules: recursive
-
-#     - name: Configure CMake
-#       run: cmake .\tests -B ${{github.workspace}}\build -DWARNINGS_AS_ERRORS_FOR_EASY_OPENCV=ON -T ClangCL
-
-#     - name: Build
-#       run: cmake --build ${{github.workspace}}\build --config Release --target ${{env.TARGET}}
-
-# #-----------------------------------------------------------------------------------------------
-#   Linux_GCC_Debug:
-#     name: Linux GCC Debug
-#     runs-on: ubuntu-22.04
-#     steps:
-#     - uses: actions/checkout@v3
-#       with:
-#         submodules: recursive
-    
-#     - name: Install GTK
-#       run : sudo apt-get install libgtk-3-dev
-
-#     - name: Configure CMake
-#       run: cmake ./tests -B ${{github.workspace}}/build -DWARNINGS_AS_ERRORS_FOR_EASY_OPENCV=ON -D CMAKE_BUILD_TYPE=Debug -D CMAKE_C_COMPILER=gcc-11 -D CMAKE_CXX_COMPILER=g++-11
-
-#     - name: Build
-#       run: cmake --build ${{github.workspace}}/build --config Debug --target ${{env.TARGET}}
-    
-# #-----------------------------------------------------------------------------------------------
-#   Linux_GCC_Release:
-#     name: Linux GCC Release
-#     runs-on: ubuntu-22.04
-#     steps:
-#     - uses: actions/checkout@v3
-#       with:
-#         submodules: recursive
-
-#     - name: Install GTK
-#       run : sudo apt-get install libgtk-3-dev
-          
-#     - name: Configure CMake
-#       run: cmake ./tests -B ${{github.workspace}}/build -DWARNINGS_AS_ERRORS_FOR_EASY_OPENCV=ON -D CMAKE_BUILD_TYPE=Release -D CMAKE_C_COMPILER=gcc-11 -D CMAKE_CXX_COMPILER=g++-11
-
-#     - name: Build
-#       run: cmake --build ${{github.workspace}}/build --config Release --target ${{env.TARGET}}
-
-# #-----------------------------------------------------------------------------------------------
-#   Linux_Clang_Debug:
-#     name: Linux Clang Debug 
-#     runs-on: ubuntu-22.04
-#     steps:
-#     - uses: actions/checkout@v3
-#       with:
-#         submodules: recursive
-
-#     - name: Install GTK
-#       run : sudo apt-get install libgtk-3-dev    
-
-#     - name: Configure CMake
-#       run: cmake ./tests -B ${{github.workspace}}/build -DWARNINGS_AS_ERRORS_FOR_EASY_OPENCV=ON -D CMAKE_BUILD_TYPE=Debug -D CMAKE_C_COMPILER=clang -D CMAKE_CXX_COMPILER=clang++
-
-#     - name: Build
-#       run: cmake --build ${{github.workspace}}/build --config Debug --target ${{env.TARGET}}
-
 #-----------------------------------------------------------------------------------------------
   Linux_Clang_Release:
     name: Linux Clang Release
     runs-on: ubuntu-22.04
    
-      
     env: 
-      CACHE_KEY: linux-${{ matrix.config.CMAKE_C_COMPILER }}-${{ matrix.config.CMAKE_CXX_COMPILER }}-OpenCV-${{ hashFiles('/opencv/CMakeLists.txt') }}
+      CACHE_KEY: linux-clang-release
 
-    steps:  
-    
-      
+    steps:
     - uses: actions/checkout@v3
       with:
         submodules: recursive
