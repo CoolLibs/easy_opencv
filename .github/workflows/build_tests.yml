@@ -130,17 +130,21 @@ jobs:
   Linux_Clang_Release:
     name: Linux Clang Release
     runs-on: ubuntu-22.04
-
+   
     env:
       CACHE_KEY: ${{ runner.os }}-${{ matrix.config.CMAKE_C_COMPILER }}-${{ matrix.config.CMAKE_CXX_COMPILER }}-OpenCV-${{ hashFiles('/opencv/CMakeLists.txt') }}
 
     steps:
+      
     - uses: actions/checkout@v3
       with:
         submodules: recursive
 
     - name: Install GTK
       run : sudo apt-get install libgtk-3-dev
+
+    # - name: Determine OS and set custom environment variable
+    #   run : echo "OS=${{ runner.os }}" >> $GITHUB_ENV
 
     - name: Cache OpenCV Build
       uses: actions/cache@v2
