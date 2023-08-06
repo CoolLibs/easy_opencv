@@ -4,6 +4,8 @@ add_library(easy_opencv INTERFACE)
 add_library(easy_opencv::easy_opencv ALIAS easy_opencv)
 
 set(BUILD_opencv_world ON CACHE BOOL "" FORCE)
+set(OPENCV_GENERATE_SETUPVARS OFF CACHE BOOL "" FORCE)
+set(OPENCV_ENABLE_ALLOCATOR_STATS OFF CACHE BOOL "" FORCE)
 add_subdirectory(opencv)
 
 target_include_directories(easy_opencv SYSTEM INTERFACE "opencv/include")
