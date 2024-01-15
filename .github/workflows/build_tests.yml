@@ -1,75 +1,47 @@
 name: Build tests
 
-on: 
+on:
   push:
-    branches: [ main ]
-
+    branches: [main]
   pull_request:
-    branches: [ main ]
-
-
-env:
-  TARGET: easy_opencv-tests
+    branches: [main]
 
 jobs:
-#-----------------------------------------------------------------------------------------------
-  Linux_Clang_Release:
-    name: Linux Clang Release
-    runs-on: ubuntu-22.04
-   
-    env: 
-      CACHE_KEY: linux-clang-release
+  build-tests:
+    name: ${{ matrix.config.name }} ${{ matrix.build_type }}
+    runs-on: ${{ matrix.config.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - { name: "Windows MSVC", os: windows-latest, cc: "cl", cxx: "cl" }
+          - { name: "Windows MinGW", os: windows-latest, cc: "gcc", cxx: "g++" }
+          - { name: "Ubuntu GCC", os: ubuntu-latest, cc: "gcc", cxx: "g++" }
+          - {
+              name: "MacOS Clang",
+              os: macos-latest,
+              cc: "clang",
+              cxx: "clang++",
+            }
+        build_type:
+          - Debug
+          - Release
 
     steps:
-    - uses: actions/checkout@v3
-      with:
-        submodules: recursive
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
 
-    - name: Install GTK
-      run : sudo apt-get install libgtk-3-dev
+      - name: ccache
+        uses: hendrikmuhs/ccache-action@v1.2
+        with:
+          key: ${{ matrix.config.name }}-${{ matrix.build_type }}
 
-    # - name: Determine OS and set custom environment variable
-    #   run : echo "OS=${{ runner.os }}" >> $GITHUB_ENV
-
-    - name: Cache OpenCV Build
-      uses: actions/cache@v2
-      with:
-        path: |
-          /tests/build/easy_opencv
-        key: ${{ env.CACHE_KEY }}
-
-    - name: Configure CMake
-      run: cmake ./tests -B ${{github.workspace}}/build -DWARNINGS_AS_ERRORS_FOR_EASY_OPENCV=ON -D CMAKE_BUILD_TYPE=Release -D CMAKE_C_COMPILER=clang -D CMAKE_CXX_COMPILER=clang++
-
-    - name: Build
-      run: cmake --build ${{github.workspace}}/build --config Release --target ${{env.TARGET}}
-
-#-----------------------------------------------------------------------------------------------
-#   MacOS_Clang_Debug:
-#     name: MacOS Clang Debug 
-#     runs-on: macos-11
-#     steps:
-#     - uses: actions/checkout@v3
-#       with:
-#         submodules: recursive
-
-#     - name: Configure CMake
-#       run: cmake ./tests -B ${{github.workspace}}/build -DWARNINGS_AS_ERRORS_FOR_EASY_OPENCV=ON -D CMAKE_BUILD_TYPE=Debug -D CMAKE_C_COMPILER=$(brew --prefix llvm@15)/bin/clang -D CMAKE_CXX_COMPILER=$(brew --prefix llvm@15)/bin/clang++
-
-#     - name: Build
-#       run: cmake --build ${{github.workspace}}/build --config Debug --target ${{env.TARGET}}
-
-# #-----------------------------------------------------------------------------------------------
-#   MacOS_Clang_Release: 
-#     name: MacOS Clang Release
-#     runs-on: macos-11
-#     steps:
-#     - uses: actions/checkout@v3
-#       with:
-#         submodules: recursive
-
-#     - name: Configure CMake
-#       run: cmake ./tests -B ${{github.workspace}}/build -DWARNINGS_AS_ERRORS_FOR_EASY_OPENCV=ON -D CMAKE_BUILD_TYPE=Release -D CMAKE_C_COMPILER=$(brew --prefix llvm@15)/bin/clang -D CMAKE_CXX_COMPILER=$(brew --prefix llvm@15)/bin/clang++
-
-#     - name: Build
-#       run: cmake --build ${{github.workspace}}/build --config Release --target ${{env.TARGET}}
+      - name: build with cmake
+        uses: lukka/run-cmake@v3
+        with:
+          cmakeListsTxtPath: "${{ github.workspace }}/tests/CMakeLists.txt"
+          cmakeAppendedArgs: "-D CMAKE_BUILD_TYPE=${{ matrix.build_type }} -D CMAKE_C_COMPILER_LAUNCHER=ccache -D CMAKE_CXX_COMPILER_LAUNCHER=ccache"
+          buildWithCMakeArgs: "--config ${{ matrix.build_type }}"
+          buildDirectory: "${{ github.workspace }}/build"
+          cmakeBuildType: ${{ matrix.build_type }}
