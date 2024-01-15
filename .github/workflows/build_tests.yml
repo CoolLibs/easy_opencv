@@ -32,6 +32,10 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Install Linux dependencies
+        if: runner.os == 'Linux'
+        run: sudo apt-get install libgtk-3-dev
+
       - name: ccache
         uses: hendrikmuhs/ccache-action@v1.2
         with:
@@ -41,7 +45,7 @@ jobs:
         uses: lukka/run-cmake@v3
         with:
           cmakeListsTxtPath: "${{ github.workspace }}/tests/CMakeLists.txt"
-          cmakeAppendedArgs: "-D CMAKE_BUILD_TYPE=${{ matrix.build_type }} -D CMAKE_C_COMPILER_LAUNCHER=ccache -D CMAKE_CXX_COMPILER_LAUNCHER=ccache"
+          cmakeAppendedArgs: "-D CMAKE_BUILD_TYPE=${{ matrix.build_type }} -D CMAKE_C_COMPILER=${{ matrix.config.cc }} -D CMAKE_CXX_COMPILER=${{ matrix.config.cxx }} -D CMAKE_C_COMPILER_LAUNCHER=ccache -D CMAKE_CXX_COMPILER_LAUNCHER=ccache"
           buildWithCMakeArgs: "--config ${{ matrix.build_type }}"
           buildDirectory: "${{ github.workspace }}/build"
           cmakeBuildType: ${{ matrix.build_type }}
