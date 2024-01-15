@@ -46,6 +46,6 @@ jobs:
         with:
           cmakeListsTxtPath: "${{ github.workspace }}/tests/CMakeLists.txt"
           cmakeAppendedArgs: "-D CMAKE_BUILD_TYPE=${{ matrix.build_type }} -D CMAKE_C_COMPILER=${{ matrix.config.cc }} -D CMAKE_CXX_COMPILER=${{ matrix.config.cxx }} -D CMAKE_C_COMPILER_LAUNCHER=ccache -D CMAKE_CXX_COMPILER_LAUNCHER=ccache"
-          buildWithCMakeArgs: "--config ${{ matrix.build_type }}"
+          buildWithCMakeArgs: "--config ${{ matrix.build_type }} --target easy_opencv-tests"
           buildDirectory: "${{ github.workspace }}/build"
           cmakeBuildType: ${{ matrix.build_type }}
