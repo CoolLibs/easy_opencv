@@ -33,5 +33,3 @@ target_include_directories(easy_opencv SYSTEM INTERFACE "opencv/modules/videoio/
 target_include_directories(easy_opencv SYSTEM INTERFACE "opencv/modules/world/include")
 
 target_link_libraries(easy_opencv INTERFACE opencv_world)
-
-install(FILES "opencv/LICENSE" DESTINATION "license/opencv")
